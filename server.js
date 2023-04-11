@@ -1,22 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+const express = require("express");
 
-const PORT = process.env.PORT || 3001;
-const express = require('express');
-const app = express();
-
-const allNotes = require('./db/db.json');
+var app = express();
+var PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(express.static('public'));
+app.use(express.static('db'));
 
 app.get('/api/notes', (req, res) => {
     res.json(allNotes);
-});
-
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 function createNewNote(body, notesArray) {
@@ -29,23 +22,6 @@ function createNewNote(body, notesArray) {
 
     return newNote;
 }
-
-
-app.post('./api/notes', (req, res) => {
-    req.body.id = allNotes.length.toString();
-
-    const newNote = createNewNote(req.body, allNotes);
-
-    res.json(newNote);
-});
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'))
-})
 
 app.listen(PORT, () => {
     console.log('API server now on port ${PORT}!');
