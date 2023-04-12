@@ -21,9 +21,9 @@ module.exports = function (app) {
             title : req.body.title,
             text : req.body.text,
         };
-        fs.readFile("./db/db.json", "utf8", function(errpr) {
+        fs.readFile("./db/db.json", "utf8", function(error) {
             if (error){
-                return console.log(eror);
+                return console.log(error);
             }
             console.log("Success")
         });
@@ -31,4 +31,7 @@ module.exports = function (app) {
             
             allNotes.push(newNotes);
     })
-}
+};
+
+//newNotes
+//res.sendFile - path
