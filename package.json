@@ -18,7 +18,12 @@
   },
   "homepage": "https://github.com/MorrisEli/Note-Taker#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "id": "^0.0.0",
+    "jsonfile": "^6.1.0",
+    "uniqid": "^5.4.0",
+    "unique": "^0.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
